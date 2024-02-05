@@ -30,11 +30,53 @@
 //   // var age = DateTime.now().year - int.parse(birthYear!);
 //   // print("your age is $age Years old");
 // }
-
 import 'dart:io';
 import 'dart:math';
 
+class Human {
+  int? age;
+  set_age(p_age) {
+    this.age = p_age;
+  }
+
+  get_age() {
+    print("age =${this.age}");
+  }
+}
+
+typedef operation(a, b);
+
+calc(a, b, operation fun) {
+  fun(a, b);
+}
+
+add(a, b) {
+  print("$a+$b=${a + b}");
+}
+
+sub(a, b) {
+  print("$a-$b=${a - b}");
+}
+
+mul(a, b) {
+  print("$a*$b=${a * b}");
+}
+
+div(a, b) {
+  print("$a/$b=${a / b}");
+}
+
 void main(List<String> args) {
+  Human man = Human();
+
+  man.set_age(35);
+  man.get_age();
+
+  //   *********************************888
+  calc(2, 4, (a, b) => add(a, b));
+  calc(2, 4, (a, b) => sub(a, b));
+  calc(2, 4, (a, b) => mul(a, b));
+  calc(2, 4, (a, b) => div(a, b));
 //   ***********************  Degree App *********************
   for (var i = 0; i <= 10; i++) {
     var degree = Random().nextInt(100);
@@ -166,4 +208,28 @@ void main(List<String> args) {
   map.forEach((key, value) {
     print("$key  >>>>>  $value");
   });
+
+  var q = 5;
+  print(fun(q));
+  info();
+}
+
+fun(n) {
+  if (n != 0)
+    return n + fun(n - 1);
+  else
+    return 0;
+}
+
+info() {
+  try {
+    for (var i = 0; i < 10; i++) {
+      if (i == 5) {
+        throw FormatException();
+      }
+      print('i=$i');
+    }
+  } catch (e) {
+    print(e);
+  }
 }
